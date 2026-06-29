@@ -207,10 +207,10 @@
     text-transform:uppercase;color:var(--mut);display:block;margin-bottom:5px}
   .drivers .d b{font-size:15px;font-family:"SF Mono",ui-monospace,monospace;display:block}
   .drivers .d .x{font-size:12px;color:var(--ink-2);display:block;margin-top:3px;line-height:1.35}
-  .scen-out{margin-top:18px;border-top:1px solid var(--line);padding-top:16px;display:flex;
-    justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px}
-  .scen-out .label{font-family:"SF Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
-  .scen-out .val{font-size:30px;font-family:"SF Mono",ui-monospace,monospace;font-weight:600}
+  .scen-out{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+  .scen-out .label{font-family:"SF Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);display:block;margin-bottom:5px}
+  .scen-out .val{font-size:21px;font-family:"SF Mono",ui-monospace,monospace;font-weight:600;display:block;line-height:1.15}
+  .scen-out .ret{font-size:13.5px;color:var(--ink-2);display:block;margin-top:6px}
   .scen-out.bull .val{color:var(--pos)}.scen-out.base .val{color:var(--ink)}.scen-out.bear .val{color:var(--crimson)}
   @media(max-width:680px){.drivers{grid-template-columns:1fr 1fr}}
 
@@ -319,7 +319,7 @@
     <div class="pillars">
       <div class="pillar"><div class="ph"><span class="pn">01</span> Quality franchise</div>
         <div class="pc"><h4>The category leader, and it's real</h4>
-        <p>Tenable is the leader at finding security weaknesses across a company's whole estate — and has been for 20+ years. About 95% of its revenue is recurring (subscriptions that renew), it serves ~44,000 customers, and it's profitable and cash-generative. This is an established, sticky business — the kind that does well when demand for its core job rises.</p></div></div>
+        <p>Tenable is the leader at finding security weaknesses across a company's whole estate — and has been for 20+ years. About 95% of its revenue is recurring, it serves ~44,000 customers, and it's profitable and cash-generative. This is an established, sticky business — the kind that does well when demand for its core job rises.</p></div></div>
       <div class="pillar"><div class="ph"><span class="pn">02</span> The AI tailwind</div>
         <div class="pc"><h4>More threats = more demand</h4>
         <p>The fear was that AI would make Tenable's scanning obsolete. The reality is the opposite: AI floods every company with far more security holes to deal with, and someone has to sort and fix them. The number of known threats roughly doubled in five years even before AI; AI accelerates that curve. Tenable sells exactly the service that flood creates demand for — so it's a beneficiary of the disruption, not a victim.</p></div></div>
@@ -525,9 +525,9 @@
     <h2>Does the AI wave drown Tenable, or <em>supercharge</em> it?</h2>
     <p class="lead">The bull case is the chain where the threat flood drives years of fast growth. Click through all three — the case is only honest if the bear sits next to the bull.</p>
     <div class="scen-controls">
-      <button data-s="bull"><span class="cl">Bull</span><span class="cv">Strong</span><span class="cd">the flood drives fast growth</span></button>
-      <button data-s="base" class="active"><span class="cl">Base</span><span class="cv">Solid</span><span class="cd">steady, dependable growth</span></button>
-      <button data-s="bear"><span class="cl">Bear</span><span class="cv">Weak</span><span class="cd">a bigger rival takes the job</span></button>
+      <button data-s="bull"><span class="cl">Bull</span><span class="cv">~15–18%</span><span class="cd">growth, the flood hits hard</span></button>
+      <button data-s="base" class="active"><span class="cl">Base</span><span class="cv">~7–10%</span><span class="cd">growth, steady &amp; dependable</span></button>
+      <button data-s="bear"><span class="cl">Bear</span><span class="cv">~3–5%</span><span class="cd">growth, a rival takes the job</span></button>
     </div>
     <div class="scen-panel" id="scenPanel"></div>
     <p class="annot">Illustrative outcomes framed by revenue growth, not stock multiples or price targets.</p>
@@ -579,18 +579,18 @@
     btn.addEventListener('click',()=>btn.closest('.pcard').classList.toggle('open'));
   });
   const scenData={
-    bull:{tag:'Findings overwhelm the team → triage becomes the product',title:'The flood becomes the product',cls:'bull',
-      narr:'AI floods every company with more security holes than any team can handle by hand. The pain becomes acute and universal. Customers stop shopping for cheap scanners and pay up for one system that sorts and fixes everything — Tenable\u2019s all-in-one platform. With Claude and OpenAI inside it, that platform does the fixing automatically, so customers buy more of it. The platform crosses half of revenue ahead of plan, and total growth climbs back into the teens. The value here comes from the business getting bigger and faster — more customers, bigger deals, faster growth.',
-      d:[['Platform mix','>50%','ahead of plan'],['Total growth','mid-teens','climbs back up'],['Deal sizes','larger','AI fixing sells'],['Driver','revenue','not the multiple']],
-      out:'Strong',outlbl:'driven by accelerating revenue growth'},
-    base:{tag:'Mix-shift works, but gradually',title:'A slow, profitable grind up',cls:'base',
+    bull:{tag:'The flood hits hard → growth re-accelerates',title:'The flood becomes the product',cls:'bull',
+      narr:'AI floods every company with more security holes than any team can handle by hand. The pain becomes acute and universal. Customers stop shopping for cheap scanners and pay up for one system that sorts and fixes everything — Tenable\u2019s all-in-one platform. With Claude and OpenAI inside it, that platform does the fixing automatically, so customers buy more of it. The platform crosses half of revenue ahead of plan, total growth climbs back into the mid-to-high teens, and profitability widens as it scales.',
+      d:[['Revenue growth','~15–18%','re-accelerates from ~10%'],['Platform mix','>50%','by ~2028, ahead of plan'],['Net retention','~115%+','customers spend more each year'],['Op. margin','~28–30%','scales with revenue']],
+      out:'~$1.7–1.9bn revenue by 2029',outlbl:'≈ +70–90% larger business → roughly a 2–3× total return as profits compound'},
+    base:{tag:'The shift works, but gradually',title:'A steady, profitable grind up',cls:'base',
       narr:'The shift to the bigger platform works, but gradually. It keeps growing in the mid-teens while the older scanning business holds roughly flat, so total growth stays around 7–10% — steady, profitable, dependable. Not the explosive case, but a solid business getting modestly bigger and more profitable each year as the threat flood builds underneath it.',
-      d:[['Platform mix','rising','steadily'],['Total growth','~7–10%','steady'],['Profitability','improving','each year'],['Driver','revenue','compounding']],
-      out:'Solid',outlbl:'steady revenue growth, dependable'},
+      d:[['Revenue growth','~7–10%','steady, in line with today'],['Platform mix','~45–50%','rising on plan'],['Net retention','~105–108%','modest expansion'],['Op. margin','~25–27%','grinding higher']],
+      out:'~$1.3–1.4bn revenue by 2029',outlbl:'≈ +35–45% larger business → roughly a 1.4–1.6× total return, mostly from earnings growth'},
     bear:{tag:'A bigger rival takes the job',title:'A bigger rival muscles in',cls:'bear',
       narr:'The sorting-and-fixing job is real — but a bigger rival takes it. CrowdStrike already sits inside companies via its security software and bundles the same service almost for free; or Microsoft wins it for customers already deep in its ecosystem. Companies stop buying a separate Tenable contract. Tenable\u2019s growth stalls in the low single digits, and it ends up a smaller, slower specialist than the story hoped — the threat flood is real, but someone else catches most of it.',
-      d:[['Platform shift','stalls','customers don\u2019t move up'],['Total growth','low single','stuck'],['Competitive wins','slip','vs bigger rivals'],['Driver','growth fades','the case breaks']],
-      out:'Weak',outlbl:'growth never arrives — the thesis fails'}
+      d:[['Revenue growth','~3–5%','stalls from ~10%'],['Platform mix','~35%','customers don\u2019t move up'],['Net retention','~98–102%','flat to shrinking'],['Win rate','slipping','vs CrowdStrike / Microsoft']],
+      out:'~$1.1–1.2bn revenue by 2029',outlbl:'≈ barely larger → roughly flat-to-down, perhaps −15–25% as the growth premium disappears'}
   };
   const panel=document.getElementById('scenPanel');
   function renderScen(k){
@@ -599,8 +599,7 @@
       '<div class="scen-head '+s.cls+'"><h3>'+s.title+'</h3><span class="tag">'+s.tag+'</span></div>'+
       '<div class="scen-body"><p class="narr">'+s.narr+'</p>'+
       '<div class="drivers">'+s.d.map(x=>'<div class="d"><span>'+x[0]+'</span><b>'+x[1]+'</b><span class="x">'+x[2]+'</span></div>').join('')+'</div>'+
-      '<div class="scen-out '+s.cls+'"><span class="label">Illustrative outcome</span><span class="val">'+s.out+'</span></div>'+
-      '<p class="annot" style="margin-top:6px">'+s.outlbl+'</p></div>';
+      '<div class="scen-out '+s.cls+'"><span class="label">Illustrative outcome · revenue today ≈ $1bn</span><span class="val">'+s.out+'</span><span class="ret">'+s.outlbl+'</span></div></div>';
   }
   document.querySelectorAll('.scen-controls button').forEach(b=>{
     b.addEventListener('click',()=>{
