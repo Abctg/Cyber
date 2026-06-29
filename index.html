@@ -228,6 +228,51 @@
 
   footer{padding:34px 0 56px;font-size:12px;color:var(--mut);border-top:1px solid var(--line);margin-top:10px}
   footer .disc{max-width:84ch;line-height:1.55}
+
+  /* annotated chart */
+  .chartwrap{margin-top:18px;border:1px solid var(--ink);border-radius:6px;background:var(--paper);padding:18px 12px 10px;overflow:hidden}
+  .chartwrap svg{width:100%;height:auto;display:block}
+  .ev-dot{cursor:pointer;transition:r .15s}
+  .ev-dot:hover{r:8}
+  .ev-card{position:relative;margin:12px 8px 4px;border:1px solid var(--teal-d);border-left:4px solid var(--amber);
+    border-radius:5px;background:var(--paper-2);padding:12px 14px;display:none}
+  .ev-card.show{display:block;animation:fade .25s ease}
+  .ev-card .ed{font-family:"SF Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);font-weight:600;margin-bottom:4px}
+  .ev-card .et{font-size:15px;font-weight:600;margin-bottom:3px}
+  .ev-card .ex{font-size:13.5px;color:var(--ink-2)}
+  .ev-hint{font-family:"SF Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.08em;color:var(--mut);text-align:center;margin-top:4px}
+
+  /* ecosystem map */
+  .ecomap{margin:24px 0 8px;border:1px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--paper)}
+  .eco-jobs{display:grid;grid-template-columns:170px repeat(4,1fr);border-bottom:2px solid var(--ink)}
+  .eco-jobs .jh{padding:12px 12px;background:var(--ink);color:var(--paper);font-family:"SF Mono",ui-monospace,monospace;
+    font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-left:1px solid var(--rule)}
+  .eco-jobs .jh:first-child{border-left:none;background:var(--ink-2)}
+  .eco-jobs .jh small{display:block;font-size:9px;color:#9AA6BA;margin-top:3px;letter-spacing:.04em;text-transform:none;font-weight:400;line-height:1.3}
+  .eco-jobs .jh.decide{background:var(--teal-d)}
+  .eco-row{display:grid;grid-template-columns:170px repeat(4,1fr);border-top:1px solid var(--line)}
+  .eco-row .name{padding:13px 12px;display:flex;flex-direction:column;justify-content:center;gap:2px;background:var(--paper-2);border-right:1px solid var(--line)}
+  .eco-row .name b{font-size:14px}
+  .eco-row .name span{font-family:"SF Mono",ui-monospace,monospace;font-size:9.5px;color:var(--mut);letter-spacing:.04em}
+  .eco-row.tn .name{background:rgba(31,111,107,.14)}
+  .eco-row.tn .name b{color:var(--teal-d)}
+  .eco-cell{border-left:1px solid var(--line);position:relative;min-height:52px;display:flex;align-items:center;justify-content:center}
+  .eco-cell.on{background:repeating-linear-gradient(45deg,rgba(31,111,107,.10),rgba(31,111,107,.10) 6px,rgba(31,111,107,.18) 6px,rgba(31,111,107,.18) 12px)}
+  .eco-cell.on.core{background:var(--teal-d)}
+  .eco-cell.on.core .pill{color:#fff}
+  .eco-cell .pill{font-family:"SF Mono",ui-monospace,monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-d);font-weight:600}
+  .eco-cell.on.sec .pill{color:var(--teal-d)}
+  .eco-legend{display:flex;gap:18px;flex-wrap:wrap;padding:12px 14px;font-family:"SF Mono",ui-monospace,monospace;font-size:10.5px;color:var(--mut);background:var(--paper-2);border-top:1px solid var(--line)}
+  .eco-legend span{display:flex;align-items:center;gap:7px}
+  .eco-legend .sw{width:20px;height:13px;border-radius:2px;display:inline-block;border:1px solid var(--line)}
+  .eco-legend .sw.core{background:var(--teal-d)}
+  .eco-legend .sw.sec{background:repeating-linear-gradient(45deg,rgba(31,111,107,.12),rgba(31,111,107,.12) 5px,rgba(31,111,107,.22) 5px,rgba(31,111,107,.22) 10px)}
+  @media(max-width:720px){
+    .eco-jobs,.eco-row{grid-template-columns:104px repeat(4,1fr)}
+    .eco-jobs .jh{font-size:8.5px;padding:8px 5px}.eco-jobs .jh small{display:none}
+    .eco-row .name{padding:9px 7px}.eco-row .name b{font-size:11.5px}
+    .eco-cell .pill{font-size:7.5px}.eco-cell{min-height:44px}
+  }
 </style>
 </head>
 <body>
@@ -236,7 +281,7 @@
   <div class="wrap">
     <div class="top">
       <div>
-        <div class="kick">The decide layer · one position</div>
+        <div class="kick">The sort-and-fix layer · one position</div>
         <h1 class="title">The case for <em>Tenable.</em></h1>
       </div>
       <div class="author"><b>Arnav Bagchi Chowdhury</b>Independent equity research<br>Quality-at-a-discount · macro overlay</div>
@@ -260,10 +305,10 @@
   <section><div class="wrap">
     <div class="tn-hero">
       <div class="eyebrow"><span class="num">★</span> The position</div>
-      <h2>The cheapest, purest, best-validated way to own <em>the layer AI promotes.</em></h2>
-      <p class="lead">As AI commoditises vulnerability <em>discovery</em>, value migrates to the layer that turns a flood of findings into prioritised, automated action — exposure management. Tenable is the leading listed pure-play on that layer, trading at a price that asks almost nothing of the future.</p>
+      <h2>The purest way to own <em>the part of cybersecurity that grows fastest</em> as AI takes over.</h2>
+      <p class="lead">AI can now find security holes faster than any company can fix them. That turns a trickle of problems into a flood — and the flood is what makes Tenable's job mission-critical. The bet is simple: as AI multiplies the number of threats, demand for the company that sorts and fixes them grows for years. This is a revenue-growth story, not a cheap-stock story.</p>
       <div class="tn-stats">
-        <div class="s"><span>Fwd P/E</span><b>~12×</b><span class="x">near its cheapest ever, vs 50–90× for the consolidators</span></div>
+        <div class="s"><span>The driver</span><b>Volume</b><span class="x">AI multiplies threats → more work for the sorting layer Tenable owns</span></div>
         <div class="s"><span>Recurring rev</span><b>~95%</b><span class="x">~$1bn revenue, ~82% gross margin</span></div>
         <div class="s"><span>Platform mix</span><b>~⅓</b><span class="x">Tenable One, growing mid-teens, targeted &gt;50% by FY29</span></div>
         <div class="s"><span>Validation</span><b>Glasswing</b><span class="x">direct Anthropic / Claude partnership in Hexa AI</span></div>
@@ -274,41 +319,41 @@
     <div class="pillars">
       <div class="pillar"><div class="ph"><span class="pn">01</span> Quality franchise</div>
         <div class="pc"><h4>The category leader, and it's real</h4>
-        <p>VM leader anchored by Nessus — the deepest, most accurate commercial scanning heritage in the industry. ~95% recurring revenue, ~82% gross margins, ~44,000 customers, 1.7T security findings across 300k+ sensor plugins. This is a high-quality, sticky, cash-generative software business, not a turnaround.</p></div></div>
-      <div class="pillar"><div class="ph"><span class="pn">02</span> Mispriced overhang</div>
-        <div class="pc"><h4>Cheap for a fixable reason</h4>
-        <p>An "AI kills the scanner" fear has compressed the multiple to ~12× forward earnings / single-digit EV/FCF — near the cheapest in its history — even as the franchise stays intact and AI arguably <em>raises</em> demand for what it sells. That's an identifiable, resolvable reason for the discount: exactly the setup the framework looks for.</p></div></div>
-      <div class="pillar"><div class="ph"><span class="pn">03</span> Structural tailwind</div>
-        <div class="pc"><h4>The pivot is in the numbers</h4>
-        <p>Tenable One is already ~⅓ of revenue, growing mid-teens, with a credible path to &gt;50% by FY29 — the mix-shift that drives the Rule-of-40 target. Unlike peers whose pivot is mostly narrative, Tenable's is <em>visible in the reported mix today.</em></p></div></div>
+        <p>Tenable is the leader at finding security weaknesses across a company's whole estate — and has been for 20+ years. About 95% of its revenue is recurring (subscriptions that renew), it serves ~44,000 customers, and it's profitable and cash-generative. This is an established, sticky business — the kind that does well when demand for its core job rises.</p></div></div>
+      <div class="pillar"><div class="ph"><span class="pn">02</span> The AI tailwind</div>
+        <div class="pc"><h4>More threats = more demand</h4>
+        <p>The fear was that AI would make Tenable's scanning obsolete. The reality is the opposite: AI floods every company with far more security holes to deal with, and someone has to sort and fix them. The number of known threats roughly doubled in five years even before AI; AI accelerates that curve. Tenable sells exactly the service that flood creates demand for — so it's a beneficiary of the disruption, not a victim.</p></div></div>
+      <div class="pillar"><div class="ph"><span class="pn">03</span> The growth engine</div>
+        <div class="pc"><h4>Customers buying more, not just renewing</h4>
+        <p>Tenable's newer all-in-one platform (Tenable One) is already about a third of revenue and growing in the mid-teens — much faster than the legacy scanning business. As more customers move onto it, the company's overall growth rate should climb. That mix-shift is the engine: it's already visible in the numbers today, not just a promise.</p></div></div>
     </div>
 
     <h3 class="sub">Why it can defend itself — the moat boundary, honestly drawn</h3>
-    <p class="body">The fair objection is that consolidators (CrowdStrike from the endpoint, Wiz/Microsoft from the cloud) are pushing into the same decide layer. Tenable's moat is real but bounded — here's exactly where it holds and where it doesn't.</p>
+    <p class="body">The fair objection is that the bigger players (CrowdStrike from inside the network, Microsoft/Wiz from the cloud) are moving into the same sort-and-fix job. Tenable's edge is real but has limits — here's exactly where it holds and where it doesn't.</p>
     <div class="moat">
       <div class="mh"><div class="a">Where Tenable holds</div><div class="b">Where it's contested</div></div>
       <div class="mb">
         <div class="a"><ul>
-          <li><strong>Breadth across the awkward estate</strong> — OT / industrial control, Active Directory, hybrid & on-prem, the long tail of unmanaged assets endpoint agents can't see.</li>
-          <li><strong>Source-agnostic neutrality</strong> — ingests anyone's findings (Open Connector, 300+ integrations); the "Switzerland" that multi-vendor enterprises prefer.</li>
-          <li><strong>Detection-data edge</strong> — surfaces active exploitation ~7 days ahead of CISA's KEV catalog, with materially greater coverage.</li>
+          <li><strong>The messy, non-cloud estate</strong> — factory and industrial systems, older on-site infrastructure, and the long tail of devices the cloud-only players simply can't see.</li>
+          <li><strong>Vendor-neutral</strong> — it pulls in findings from <em>any</em> tool, not just its own. Big companies that run many vendors prefer a neutral referee.</li>
+          <li><strong>An early-warning edge</strong> — it tends to flag threats being actively exploited about a week before the main government list does.</li>
         </ul></div>
         <div class="b"><ul>
-          <li><strong>Cloud-native ground</strong> — Wiz (now Microsoft) is the gold standard here and is building source-agnostic ingestion to attack the neutrality moat directly.</li>
-          <li><strong>The intelligence layer</strong> — CrowdStrike already owns the agent + telemetry flywheel and can bundle exposure management near-free.</li>
-          <li><strong>The aggregator middle</strong> — Brinqa, Vulcan, Nucleus prove the decide layer can be unbundled from the scanner entirely.</li>
+          <li><strong>The cloud</strong> — Microsoft/Wiz is the leader here and is building the same neutral-ingestion feature to chip away at Tenable's independence advantage.</li>
+          <li><strong>Inside the network</strong> — CrowdStrike is already on the device and can add the sort-and-fix job almost for free.</li>
+          <li><strong>The pure sorters</strong> — several smaller specialists do <em>only</em> the sorting job, proving it can be sold separately from the scanning.</li>
         </ul></div>
       </div>
     </div>
-    <p class="annot">The case is not "Tenable wins exposure management." It's "Tenable owns a defensible, hard-to-replicate corner of it — breadth + OT + neutrality — and you're paying ~12× for it while the contesters trade at 50–90×."</p>
+    <p class="annot">The case is not "Tenable wins the whole market." It's "Tenable owns a defensible, hard-to-copy corner of it — the broad, messy, non-cloud estate plus neutral, any-vendor sorting — and that corner grows as AI multiplies threats."</p>
 
-    <h3 class="sub">The product that proves they understand the shift — Hexa AI</h3>
-    <p class="body">Hexa AI, GA at the May Investor Day, is Tenable's agentic remediation engine — a Claude-powered (model-agnostic) harness on top of the Exposure Data Fabric that moves the platform from "system of record" to "system of action": ingest findings, prioritise by business risk, auto-create tickets, orchestrate the fix. Strategically it's the right product, and it's the clearest evidence management knows where value is going. The honest caveat, kept in view: today the bundled tokens cover only a few weeks of heavy use and the Foundation tier is a ~6% uplift — built to drive <em>adoption</em>, not yet to move <em>revenue</em>. The signal to watch is metered Hexa consumption showing up as a real line.</p>
+    <h3 class="sub">The product that proves they get it — "Hexa"</h3>
+    <p class="body">In May, Tenable launched Hexa, an AI assistant (powered by Claude) built into its platform. The simple version: instead of just handing a security team a long list of problems, Hexa sorts them by what actually matters, then does much of the fixing automatically — writing the tickets, applying the fixes, generating the reports. That's the leap from "here's what's wrong" to "here's what's wrong and it's handled." It's the clearest sign management understands that the valuable job is now sorting-and-fixing, not just finding. The honest caveat: it's early, and Hexa isn't a big revenue driver yet — it's mostly there to get customers onto the bigger platform. The thing to watch is customers actually paying more for it over time.</p>
 
     <div class="crit">
-      <div><h6>Framework fit · gate 1</h6><p>Quality franchise — durable VM leadership, high returns on capital, ~95% recurring.</p></div>
-      <div><h6>Framework fit · gate 2–3</h6><p>Resolvable overhang + multi-year secular tailwind (exposure management / CTEM), not a cyclical peak.</p></div>
-      <div><h6>Framework fit · gate 4</h6><p>Passes the hard valuation gate comfortably — ~12× vs a cohort at 50–90×. This is the rare one that's actually cheap.</p></div>
+      <div><h6>Framework fit · gate 1</h6><p>A quality business — the durable market leader at its core job, highly profitable, ~95% of revenue recurring.</p></div>
+      <div><h6>Framework fit · gate 2–3</h6><p>A genuine multi-year demand wave (AI multiplying threats), not a one-off or a business at a temporary peak.</p></div>
+      <div><h6>Framework fit · gate 4</h6><p>Valuation stays disciplined — Tenable is priced well below the giants, so you're not overpaying for the growth. The case rests on that growth arriving, not on the stock simply getting more expensive.</p></div>
     </div>
   </div></section>
 </div>
@@ -333,7 +378,7 @@
             <div class="layer val hot"><span class="lab">Value migrates here</span>Orchestrate the fix at machine speed</div>
           </div></div>
       </div>
-      <p class="shift-cap">When finding was hard, the scanner was the prize. When AI makes findings near-infinite, the prize becomes the layer that turns a flood into "fix these seven things, now" — <strong style="color:#7FC9C4;font-style:normal">exposure management.</strong> That is the layer Tenable is built on.</p>
+      <p class="shift-cap">When finding was hard, the scanner was the prize. When AI makes finding easy and the problems endless, the prize becomes whatever turns that flood into "fix these seven things, now." That's the job Tenable is built around.</p>
     </div>
     <div class="eyebrow"><span class="num">1</span> The setup — how the industry works</div>
     <h2>"Cybersecurity" is a <em>stack of jobs,</em> not one business.</h2>
@@ -348,6 +393,59 @@
       <div class="row hl"><div class="tag"><b>Decide</b><span>Prioritise / Orchestrate</span></div>
         <div class="desc">Signals from <em>everywhere</em>, ranked by business risk, fix driven. <strong>The rung AI promotes — and Tenable's destination.</strong><span class="who">Tenable One · Wiz · Qualys ETM · CrowdStrike Fusion</span></div></div>
     </div>
+
+    <h3 class="sub">Who does what — the ecosystem at a glance</h3>
+    <p class="body">Same four jobs across the top, the main players down the side. A <strong>solid teal box</strong> is a company's main business; a <strong>striped box</strong> is a job it also does. Notice the shape: the big players spread across several jobs (that's the "consolidation" strategy), while Tenable is concentrated on <em>Find</em> and <em>Decide</em> — the two jobs AI makes busier.</p>
+    <div class="ecomap">
+      <div class="eco-jobs">
+        <div class="jh">Company</div>
+        <div class="jh">Find<small>spot the weak spots before attackers do</small></div>
+        <div class="jh">Stop<small>block attacks happening right now</small></div>
+        <div class="jh">Gatekeep<small>control what gets in & who reaches what</small></div>
+        <div class="jh decide">Decide<small>sort the flood & drive the fix</small></div>
+      </div>
+      <div class="eco-row tn">
+        <div class="name"><b>Tenable</b><span>TENB</span></div>
+        <div class="eco-cell on core"><span class="pill">Main</span></div>
+        <div class="eco-cell"></div>
+        <div class="eco-cell"></div>
+        <div class="eco-cell on sec"><span class="pill">Growing</span></div>
+      </div>
+      <div class="eco-row">
+        <div class="name"><b>Qualys</b><span>QLYS</span></div>
+        <div class="eco-cell on core"><span class="pill">Main</span></div>
+        <div class="eco-cell"></div>
+        <div class="eco-cell"></div>
+        <div class="eco-cell on sec"><span class="pill">Also</span></div>
+      </div>
+      <div class="eco-row">
+        <div class="name"><b>CrowdStrike</b><span>CRWD</span></div>
+        <div class="eco-cell on sec"><span class="pill">Also</span></div>
+        <div class="eco-cell on core"><span class="pill">Main</span></div>
+        <div class="eco-cell"></div>
+        <div class="eco-cell on sec"><span class="pill">Pushing in</span></div>
+      </div>
+      <div class="eco-row">
+        <div class="name"><b>Palo Alto</b><span>PANW</span></div>
+        <div class="eco-cell on sec"><span class="pill">Also</span></div>
+        <div class="eco-cell on sec"><span class="pill">Also</span></div>
+        <div class="eco-cell on core"><span class="pill">Main</span></div>
+        <div class="eco-cell on sec"><span class="pill">Also</span></div>
+      </div>
+      <div class="eco-row">
+        <div class="name"><b>Wiz / Microsoft</b><span>cloud</span></div>
+        <div class="eco-cell on sec"><span class="pill">Cloud only</span></div>
+        <div class="eco-cell"></div>
+        <div class="eco-cell on sec"><span class="pill">Cloud</span></div>
+        <div class="eco-cell on sec"><span class="pill">Pushing in</span></div>
+      </div>
+      <div class="eco-legend">
+        <span><i class="sw core"></i> Main business</span>
+        <span><i class="sw sec"></i> Also does this job</span>
+        <span>Blank = not in this job</span>
+      </div>
+    </div>
+    <p class="annot">The takeaway: the giants (CrowdStrike, Palo Alto, Microsoft) are everywhere, which is their strength — but it also means they treat the "Decide" job as a side feature. Tenable does it as a core focus, and covers the messy, non-cloud parts of "Find" the cloud players can't reach.</p>
   </div></section>
 </div>
 
@@ -356,38 +454,50 @@
   <section><div class="wrap">
     <div class="eyebrow"><span class="num">2</span> The field — who Tenable is up against</div>
     <h2>The competitive set. <em>Tap each to open.</em></h2>
-    <p class="lead">Two pure-play peers, two consolidators pressing in from above and beside. The threats are real — which is why Tenable's discount exists, and why the moat boundary matters.</p>
+    <p class="lead">Two direct rivals its own size, and two giants pushing in from above and beside. The threats are real — which is exactly why the question of where Tenable's edge holds matters.</p>
     <div class="players">
       <div class="pcard spot">
-        <button class="phead"><span><h4>Tenable ★</h4><span class="tick">NASDAQ: TENB</span><span class="role">Find → Decide · the position</span></span><span class="chev">+</span></button>
+        <button class="phead"><span><h4>Tenable ★</h4><span class="tick">NASDAQ: TENB</span><span class="role">Finds & sorts · the position</span></span><span class="chev">+</span></button>
         <div class="pbody"><div class="inner">
-          <p>The subject of this piece. VM leader pivoting into exposure management via Tenable One; deepest non-cloud breadth (OT, AD, hybrid) and source-agnostic. Cheapest of the set, with the most visible pivot. See "The Case for Tenable" tab.</p>
-          <div class="stat"><div><span>Growth</span><b>~10%</b></div><div><span>Op margin</span><b>~24%</b></div><div><span>Fwd P/E</span><b>~12×</b></div><div><span>Pivot</span><b>visible</b></div></div>
+          <p>The subject of this piece. The leader at finding weak spots, now expanding into sorting-and-fixing them. Covers the messy non-cloud parts others can't, and works with any vendor's tools. The most focused bet on the job AI makes busier. See "The Case for Tenable" tab.</p>
+          <div class="stat"><div><span>Growth</span><b>~10%</b></div><div><span>Op margin</span><b>~24%</b></div><div><span>Fwd P/E</span><b>~15×</b></div><div><span>Platform</span><b>growing</b></div></div>
         </div></div>
       </div>
       <div class="pcard">
-        <button class="phead"><span><h4>Qualys</h4><span class="tick">NASDAQ: QLYS</span><span class="role">Find → Decide · the cash machine</span></span><span class="chev">+</span></button>
+        <button class="phead"><span><h4>Qualys</h4><span class="tick">NASDAQ: QLYS</span><span class="role">Finds & sorts · the twin</span></span><span class="chev">+</span></button>
         <div class="pbody"><div class="inner">
-          <p>Same pivot, earlier (exposure mgmt ~11% of bookings). Higher quality on the numbers — ~47% EBITDA margins, net cash, buyback — but no frontier-lab partnership and a less-proven transition. The better business; the weaker vehicle for <em>this</em> thesis.</p>
-          <div class="stat"><div><span>Growth</span><b>~10%</b></div><div><span>EBITDA mgn</span><b>~47%</b></div><div><span>Fwd P/E</span><b>~18×</b></div><div><span>Pivot</span><b>early</b></div></div>
+          <p>Tenable's closest twin — same core business, same expansion into sorting-and-fixing, but earlier in that shift. Stronger on the raw numbers (more profitable, more cash), but no AI-lab partnership and a less-proven move into the new platform. The better business; the weaker fit for <em>this specific</em> bet.</p>
+          <div class="stat"><div><span>Growth</span><b>~10%</b></div><div><span>Profitability</span><b>higher</b></div><div><span>Fwd P/E</span><b>~18×</b></div><div><span>Platform</span><b>early</b></div></div>
         </div></div>
       </div>
       <div class="pcard">
-        <button class="phead"><span><h4>CrowdStrike</h4><span class="tick">NASDAQ: CRWD</span><span class="role">Stop → Decide · consolidator (endpoint)</span></span><span class="chev">+</span></button>
+        <button class="phead"><span><h4>CrowdStrike</h4><span class="tick">NASDAQ: CRWD</span><span class="role">Stops live attacks · pushing into sort-&-fix</span></span><span class="chev">+</span></button>
         <div class="pbody"><div class="inner">
-          <p>Endpoint king with a real data flywheel, now bundling Falcon Exposure Management near-free off the agent it already ships. The chief threat from above — but doesn't natively cover OT / industrial, and wants you single-vendor. Priced for perfection.</p>
+          <p>The leader at stopping live attacks — and already sitting inside companies via its software, so it can add the sort-and-fix job almost for free. The main threat from above. But it doesn't naturally cover factory and industrial systems, and it wants you on its platform only. The stock price already assumes near-flawless execution.</p>
           <div class="stat"><div><span>Growth</span><b>~22%</b></div><div><span>Fwd P/E</span><b>~90×</b></div><div class="neg"><span>Val. gate</span><b>fails</b></div><div><span>Moat</span><b>wide</b></div></div>
         </div></div>
       </div>
       <div class="pcard">
-        <button class="phead"><span><h4>Wiz / Microsoft</h4><span class="tick">private → MSFT</span><span class="role">Cloud → Decide · consolidator (cloud)</span></span><span class="chev">+</span></button>
+        <button class="phead"><span><h4>Wiz / Microsoft</h4><span class="tick">private → MSFT</span><span class="role">Cloud security · pushing into sort-&-fix</span></span><span class="chev">+</span></button>
         <div class="pbody"><div class="inner">
-          <p>The gold standard in cloud exposure management, now inside Microsoft. Building source-agnostic ingestion (UVM/Dazz) to contest Tenable's neutrality, and Microsoft is folding Defender VM into an Exposure Management home. The chief threat from beside — strongest in cloud, weakest in OT/hybrid breadth.</p>
+          <p>The leader in cloud security, now owned by Microsoft. It's building the same any-vendor sorting feature to chip at Tenable's independence edge, and Microsoft is bundling security into what companies already buy. The main threat from beside — strongest in the cloud, weakest in the messy non-cloud estate.</p>
           <div class="stat"><div><span>Position</span><b>cloud</b></div><div><span>Owner</span><b>MSFT</b></div><div><span>Threat</span><b>high</b></div><div><span>Gap</span><b>OT/hybrid</b></div></div>
         </div></div>
       </div>
+      <div class="pcard">
+        <button class="phead"><span><h4>Palo Alto</h4><span class="tick">NASDAQ: PANW</span><span class="role">Does a bit of everything · the foil</span></span><span class="chev">+</span></button>
+        <div class="pbody"><div class="inner">
+          <p>The "platform of platforms" — and the live proof of the valuation gate. Roughly <strong>doubled in three months</strong> to an all-time high near $330 (late June) on the AI-cyber narrative, a $25bn CyberArk buy (rebranded Idira), a NATO deal and a wave of target hikes. Q3 grew revenue 31% — but posted a net loss on M&amp;A costs, growth is heavily inorganic, and it trades near <strong>~250× earnings</strong>. The clearest "right idea, but the price already assumes everything goes right" comparison to Tenable.</p>
+          <div class="stat"><div><span>3-mo move</span><b>~+90%</b></div><div><span>Rev growth</span><b>~31%</b></div><div class="neg"><span>P/E</span><b>~250×</b></div><div class="neg"><span>Val. gate</span><b>fails</b></div></div>
+        </div></div>
+      </div>
     </div>
-    <p class="annot">Also in the frame: Rapid7 (third VM pure-play, cheaper/more troubled), SentinelOne (smaller EDR), and aggregator pure-plays Brinqa / Vulcan / Nucleus (mostly private). Figures approximate, FY25–FY26 reference.</p>
+    <p class="annot">Also in the frame: Rapid7 (third VM pure-play, cheaper/more troubled), SentinelOne (smaller EDR), and aggregator pure-plays Brinqa / Vulcan / Nucleus (mostly private). Figures approximate, FY25–FY26 reference; PANW price action as of late June 2026.</p>
+
+    <h3 class="sub">The market's fear, and the reality — TENB over 12 months</h3>
+    <p class="body">This chart frames the whole debate. The market got scared that AI would make Tenable's scanning obsolete, and sold the stock from ~$35 down to ~$16. Then the opposite proved true: AI partnerships and new products showed AI <em>creates</em> demand for what Tenable does, and the stock recovered to ~$30. The point of the chart isn't the price bounce — it's that each marker is a real sign that the growth story is landing. Tap the markers to see what happened.</p>
+    <div id="tenbChart" class="chartwrap"></div>
+    <p class="annot">Stylised monthly closing path (Jul 2025 – Jun 2026) from public price history; markers placed at announcement dates. Illustrative, not a trading chart. 52-wk range ~$16–$36; ~$30 as of late June 2026. Sources: company filings &amp; market data.</p>
   </div></section>
 </div>
 
@@ -399,9 +509,9 @@
       <h2 style="color:var(--paper)">The moment finding stopped being <em style="color:#7FC9C4">the hard part.</em></h2>
       <p>Anthropic's most advanced model class showed AI can discover and chain software vulnerabilities at a scale no human team or legacy scanner matches. Through Project Glasswing, these capabilities surfaced more than 10,000 high- or critical-severity vulnerabilities in real, critical systems.</p>
       <p class="pull">For two decades, progress was limited by how fast you could <em>find</em> vulnerabilities. Now it's limited by how fast you can verify, prioritise and patch the flood AI uncovers.</p>
-      <p>This is the catalyst for the Tenable thesis specifically. If detection is abundant, value drains out of "find" and pools in "decide" — and Tenable, via Tenable One and Hexa, is built on "decide." Crucially, Anthropic has said it wants to be a general AI platform, <em>not</em> a cyber vendor — so the labs amplify demand for Tenable's layer rather than competing with it. And Tenable is in the expanded Glasswing program with a direct Anthropic partnership, validation Qualys lacks.</p>
+      <p>This is the catalyst for the Tenable case specifically. If finding problems becomes easy and abundant, the value shifts to <em>sorting and fixing</em> them — and that's exactly what Tenable's platform does. Crucially, Anthropic has said it wants to be a general AI company, <em>not</em> a cybersecurity vendor — so the AI labs increase demand for what Tenable sells rather than competing with it. And Tenable is one of the security companies the labs chose to partner with, which Qualys is not.</p>
       <div class="gw">
-        <div><h5>What Mythos does for Tenable</h5><p>Turns discovery into a firehose, multiplying the volume of findings Tenable's prioritisation and Hexa remediation layer exists to triage. More flood = more need for the decide layer.</p></div>
+        <div><h5>What Mythos does for Tenable</h5><p>It turns a trickle of security problems into a flood — far more for every company to deal with. That flood is exactly what creates demand for Tenable's sort-and-fix service. More problems = more need for the company that handles them.</p></div>
         <div><h5>What Glasswing signals</h5><p>The labs distribute capability <em>through</em> vendors. Tenable is a partner, not a target — and the named partner, not a bystander. Thesis-consistent validation from the source of the disruption itself.</p></div>
       </div>
     </div>
@@ -413,14 +523,14 @@
   <section><div class="wrap">
     <div class="eyebrow"><span class="num">4</span> Scenarios — toggle the outcome</div>
     <h2>Does the AI wave drown Tenable, or <em>supercharge</em> it?</h2>
-    <p class="lead">The bull case is the chain where the flood becomes the product. Click through all three — the case is only honest if the bear sits next to the bull.</p>
+    <p class="lead">The bull case is the chain where the threat flood drives years of fast growth. Click through all three — the case is only honest if the bear sits next to the bull.</p>
     <div class="scen-controls">
-      <button data-s="bull"><span class="cl">Bull</span><span class="cv">2–3×</span><span class="cd">flood becomes the product</span></button>
-      <button data-s="base" class="active"><span class="cl">Base</span><span class="cv">+30–50%</span><span class="cd">slow profitable grind</span></button>
-      <button data-s="bear"><span class="cl">Bear</span><span class="cv">−20%</span><span class="cd">consolidator annexes it</span></button>
+      <button data-s="bull"><span class="cl">Bull</span><span class="cv">Strong</span><span class="cd">the flood drives fast growth</span></button>
+      <button data-s="base" class="active"><span class="cl">Base</span><span class="cv">Solid</span><span class="cd">steady, dependable growth</span></button>
+      <button data-s="bear"><span class="cl">Bear</span><span class="cv">Weak</span><span class="cd">a bigger rival takes the job</span></button>
     </div>
     <div class="scen-panel" id="scenPanel"></div>
-    <p class="annot">Illustrative ranges to frame a distribution, not price targets. No analyst consensus targets used.</p>
+    <p class="annot">Illustrative outcomes framed by revenue growth, not stock multiples or price targets.</p>
   </div></section>
 </div>
 
@@ -431,24 +541,24 @@
     <h2>Why this could be wrong, and why I'd still take the bet.</h2>
     <p class="lead">The case is strong but not free. Each risk gets a fair statement and the strongest counter — the bet only holds if it survives its own bear case.</p>
     <div class="risks">
-      <div class="risk"><h5>The consolidator owns the prize</h5><p>CrowdStrike (endpoint) and Wiz/Microsoft (cloud) are both pressing into the decide layer; they own telemetry and bundle for near-free.</p>
-        <span class="reb"><b>The rebuttal</b>Neither natively covers OT / industrial / hybrid breadth, and both want single-vendor lock-in. Tenable's neutrality + breadth is a real, if narrow, corner — and you're paid for the risk at ~12×, not 90×.</span></div>
-      <div class="risk"><h5>Reacceleration is a model, not a fact</h5><p>The FY29 Rule-of-40 target leans on Tenable One dragging total growth up; today growth is ~10% and decelerating. Careful analysts left it out of their numbers.</p>
-        <span class="reb"><b>The rebuttal</b>You're not paying for the reacceleration — at ~12× it's free optionality. The mix-shift is already visible in reported segments, not just promised.</span></div>
-      <div class="risk"><h5>AI revenue is thin today</h5><p>Hexa's bundled tokens cover a few weeks of use; Foundation is a ~6% uplift — adoption tool, not yet revenue.</p>
-        <span class="reb"><b>The rebuttal</b>Correct, and that's the point: none of the AI upside is in the price. Metered consumption converting later is upside, not the thesis.</span></div>
-      <div class="risk"><h5>"Wrong attacker" defence</h5><p>Tenable dismissed the labs (no sensors) — but two-thirds of breaches are identity/misconfig, which is CrowdStrike's turf, not the labs'.</p>
-        <span class="reb"><b>The rebuttal</b>Identity & misconfig across hybrid/OT is exactly where Tenable's breadth (AD, Ermetic CIEM) is strongest — it's contested, not conceded.</span></div>
-      <div class="risk"><h5>Dead money / opportunity cost</h5><p>A cheap stock can stay cheap. The real risk may be two flat years awaiting an inflection.</p>
-        <span class="reb"><b>The rebuttal</b>Even the bear is ~−20%, not a blow-up — and you compound ~10% cash-generative earnings while waiting. Asymmetric, not binary.</span></div>
-      <div class="risk"><h5>Concentration &amp; macro</h5><p>~15% government revenue (budget cycles), channel/distributor concentration, carried debt, high-multiple-cohort sensitivity.</p>
-        <span class="reb"><b>The rebuttal</b>Government exposure is mission-critical/sticky; the low multiple is itself the cushion against a software-cohort de-rating.</span></div>
+      <div class="risk"><h5>A bigger rival takes the job</h5><p>CrowdStrike (from inside the network) and Microsoft/Wiz (from the cloud) are both moving into the same sorting-and-fixing job — and they can bundle it cheaply with what customers already buy.</p>
+        <span class="reb"><b>The rebuttal</b>Neither fully covers the messy non-cloud parts — factory systems, industrial equipment, older on-site infrastructure — and both want to lock you into one vendor. Tenable's breadth and independence is a real edge, and the flood of AI-found threats grows the whole market, including its slice.</span></div>
+      <div class="risk"><h5>The growth might not show up</h5><p>The case needs the bigger platform to pull overall growth higher; today growth is ~10% and slowing. Some analysts won't bank on the speed-up until they see it.</p>
+        <span class="reb"><b>The rebuttal</b>The whole case is that growth <em>arrives</em> as AI multiplies threats — and the recent AI partnerships and product launches are early evidence it's starting to. The signal to track is the bigger platform pulling total growth up, quarter by quarter.</span></div>
+      <div class="risk"><h5>The AI product is early</h5><p>Hexa, the AI assistant, isn't a meaningful revenue driver yet — right now it's more of a hook to win customers than a money-maker.</p>
+        <span class="reb"><b>The rebuttal</b>That's fine — the case doesn't depend on AI revenue today. It depends on the threat flood driving more customers onto the platform over the next few years. The AI product getting paid for later is a bonus, not the core bet.</span></div>
+      <div class="risk"><h5>It defended against the wrong threat</h5><p>Tenable argued the AI labs aren't rivals (they don't sit inside company networks). True — but most breaches don't come from the code flaws AI finds; they come from bad settings and weak accounts, which is more CrowdStrike's territory.</p>
+        <span class="reb"><b>The rebuttal</b>Those weak spots — bad settings and over-permissioned accounts, especially across factory systems and on-site infrastructure — are exactly where Tenable's broad coverage is strongest. It's contested ground, not conceded.</span></div>
+      <div class="risk"><h5>It could just stay slow</h5><p>If the faster-growing platform doesn't pull overall growth up, you're left with a steady but unexciting ~10% grower — fine, but not the story.</p>
+        <span class="reb"><b>The rebuttal</b>Even in that case it's a profitable, growing business — not a broken one. And the threat flood is a strong reason to expect growth to speed up, not stall.</span></div>
+      <div class="risk"><h5>Concentration &amp; macro</h5><p>~15% of revenue comes from governments (subject to budget cycles), it leans on resellers to sell, and it carries some debt. A broad tech-stock selloff could drag it regardless of the story.</p>
+        <span class="reb"><b>The rebuttal</b>Government security spending is sticky and mission-critical, and the demand driver here — AI multiplying threats — is largely independent of the economic cycle.</span></div>
     </div>
 
     <div class="verdict">
       <div class="eyebrow">The verdict</div>
-      <p><strong>Tenable is the cheapest, purest, best-validated listed way to own the layer AI promotes — a defensible specialist at ~12× with a visible pivot and a frontier-lab partnership.</strong></p>
-      <p>It is not the widest moat in cybersecurity; that belongs to consolidators priced for perfection. The position is a deliberate wager that a <em>narrow</em> moat at a <em>fair</em> price, in front of a genuine structural tailwind, beats paying 50–90× for a wide one — with the AI upside sitting as free optionality on top of a quality, cash-generative franchise. Eyes open to the chance the consolidators annex the rung; paid, at ~12×, to take that chance.</p>
+      <p><strong>Tenable is the purest way to own the part of cybersecurity that AI makes busier — the sorting-and-fixing layer — and it works with both leading AI labs to do it.</strong></p>
+      <p>The bet is about growth, not about the stock getting more expensive. As AI multiplies the number of security threats every company faces, the work of sorting and fixing them grows for years — and that's Tenable's core job. It doesn't have the widest moat in the industry (the giants do), but it owns a real, defensible corner — the broad, messy estate that the cloud-only players can't reach — and that corner expands with the threat flood. The risk is that a bigger rival muscles in on the same job; the opportunity is a focused, profitable business riding one of the clearest demand waves in software. The whole thesis lives or dies on whether that revenue growth actually shows up — so that's the one thing to watch.</p>
     </div>
   </div></section>
 
@@ -470,17 +580,17 @@
   });
   const scenData={
     bull:{tag:'Findings overwhelm the team → triage becomes the product',title:'The flood becomes the product',cls:'bull',
-      narr:'AI-driven discovery — plus an AI-expanded attack surface of more agents, identities and apps — pushes findings past what any team can triage by hand. The pain turns acute and universal. Buyers stop shopping for scanners and pay up for one pane of glass that decides what to fix. Tenable One conversions accelerate; Hexa\u2019s machine-speed remediation turns "system of record" into "system of action" and gets metered as usage. Platform mix crosses 50% ahead of plan, total growth re-accelerates into the teens, NRR expands — and the market re-rates a re-accelerating compounder from ~12× toward 20×+.',
-      d:[['Tenable One mix','>50%','ahead of FY29 plan'],['Total growth','mid-teens','reaccelerates'],['Hexa revenue','metered','usage scales'],['Multiple','~20×+','re-rate']],
-      out:'2–3×',outlbl:'multiple re-rate × growth, multi-year'},
+      narr:'AI floods every company with more security holes than any team can handle by hand. The pain becomes acute and universal. Customers stop shopping for cheap scanners and pay up for one system that sorts and fixes everything — Tenable\u2019s all-in-one platform. With Claude and OpenAI inside it, that platform does the fixing automatically, so customers buy more of it. The platform crosses half of revenue ahead of plan, and total growth climbs back into the teens. The value here comes from the business getting bigger and faster — more customers, bigger deals, faster growth.',
+      d:[['Platform mix','>50%','ahead of plan'],['Total growth','mid-teens','climbs back up'],['Deal sizes','larger','AI fixing sells'],['Driver','revenue','not the multiple']],
+      out:'Strong',outlbl:'driven by accelerating revenue growth'},
     base:{tag:'Mix-shift works, but gradually',title:'A slow, profitable grind up',cls:'base',
-      narr:'The mix-shift works but gradually. Tenable One keeps compounding mid-teens, standalone VM holds mid-single-digits, total growth stays ~7–10%, margins expand ~125–150bps a year toward the Rule-of-40 target by FY29. No dramatic re-rating — but a cheap, cash-generative business compounding earnings. You\u2019re paid to wait while the thesis proves out in the prints.',
-      d:[['Tenable One mix','rising','to FY29'],['Total growth','~7–10%','steady'],['Margins','+125–150bps/yr','Rule of 40 by FY29'],['Multiple','~12–15×','little change']],
-      out:'+30–50%',outlbl:'earnings growth + modest re-rate'},
-    bear:{tag:'A consolidator captures the decide layer',title:'The consolidator annexes the rung',cls:'bear',
-      narr:'The decide layer is real — but a consolidator captures it. CrowdStrike bundles exposure management near-free off its agent, or Wiz/Microsoft wins it inside the Microsoft estate. CISOs stop buying a separate Tenable contract. The mix-shift stalls, growth stays stuck in single digits, and "cheap" turns out to be the market correctly pricing a niche specialist whose ceiling is capped from above.',
-      d:[['Tenable One mix','stalls','migration slows'],['Total growth','low single','stuck'],['Win rate','slips','vs CRWD / Wiz'],['Multiple','~10×','de-rate / trap']],
-      out:'−20%',outlbl:'value trap, upside capped from above'}
+      narr:'The shift to the bigger platform works, but gradually. It keeps growing in the mid-teens while the older scanning business holds roughly flat, so total growth stays around 7–10% — steady, profitable, dependable. Not the explosive case, but a solid business getting modestly bigger and more profitable each year as the threat flood builds underneath it.',
+      d:[['Platform mix','rising','steadily'],['Total growth','~7–10%','steady'],['Profitability','improving','each year'],['Driver','revenue','compounding']],
+      out:'Solid',outlbl:'steady revenue growth, dependable'},
+    bear:{tag:'A bigger rival takes the job',title:'A bigger rival muscles in',cls:'bear',
+      narr:'The sorting-and-fixing job is real — but a bigger rival takes it. CrowdStrike already sits inside companies via its security software and bundles the same service almost for free; or Microsoft wins it for customers already deep in its ecosystem. Companies stop buying a separate Tenable contract. Tenable\u2019s growth stalls in the low single digits, and it ends up a smaller, slower specialist than the story hoped — the threat flood is real, but someone else catches most of it.',
+      d:[['Platform shift','stalls','customers don\u2019t move up'],['Total growth','low single','stuck'],['Competitive wins','slip','vs bigger rivals'],['Driver','growth fades','the case breaks']],
+      out:'Weak',outlbl:'growth never arrives — the thesis fails'}
   };
   const panel=document.getElementById('scenPanel');
   function renderScen(k){
@@ -499,6 +609,58 @@
     });
   });
   renderScen('base');
+
+  // ---- TENB ANNOTATED CHART ----
+  (function(){
+    const W=860,H=320,padL=44,padR=20,padT=24,padB=46;
+    // monthly closing path (stylised, from public history): Jul'25 ~35 → low ~16 (Apr'26) → ~30 (Jun'26)
+    const pts=[
+      {m:'Jul 25',p:34.4},{m:'Aug 25',p:31.2},{m:'Sep 25',p:29.3},{m:'Oct 25',p:30.3},
+      {m:'Nov 25',p:27.5},{m:'Dec 25',p:24.0},{m:'Jan 26',p:22.7},{m:'Feb 26',p:19.7},
+      {m:'Mar 26',p:18.5},{m:'Apr 26',p:16.0},{m:'May 26',p:25.2},{m:'Jun 26',p:30.2}
+    ];
+    // events keyed to month index
+    const events=[
+      {i:7,d:'Feb 2026',t:'The low forms (~$16–20)',x:'Fear peaks — investors bet AI will make Tenable\u2019s core product obsolete. The stock is priced as if the business is shrinking. (Company insiders start buying near the bottom.)'},
+      {i:9,d:'Apr 2026',t:'52-week low ~$16 + simpler pricing',x:'The bottom. At the same moment, Tenable rolls out simpler, easier-to-buy pricing designed to move customers onto its bigger all-in-one platform — the operational turn begins.'},
+      {i:10,d:'21 May 2026',t:'Investor Day + Anthropic partnership',x:'Tenable lays out its growth plan and announces a partnership with Anthropic to put Claude inside its product — turning "here\u2019s a list of problems" into "here\u2019s the fix, done automatically." The "AI helps us, not hurts us" case lands and the stock jumps.'},
+      {i:11,d:'Jun 2026',t:'OpenAI partnership too + new wins',x:'Tenable also partners with OpenAI — so now it works with BOTH leading AI labs — adds new AI-powered features, and clears a major US-government security approval. Demand signals keep building; stock recovers to ~$30.'}
+    ];
+    const ymin=12,ymax=38;
+    const xOf=i=>padL+(i/(pts.length-1))*(W-padL-padR);
+    const yOf=p=>padT+(1-(p-ymin)/(ymax-ymin))*(H-padT-padB);
+    let path='';pts.forEach((pt,i)=>{path+=(i?'L':'M')+xOf(i).toFixed(1)+' '+yOf(pt.p).toFixed(1)+' ';});
+    // area under curve
+    let area=path+'L'+xOf(pts.length-1).toFixed(1)+' '+(H-padB)+' L'+xOf(0).toFixed(1)+' '+(H-padB)+' Z';
+    // gridlines
+    let grid='';[16,20,24,28,32,36].forEach(v=>{const y=yOf(v);grid+='<line x1="'+padL+'" y1="'+y+'" x2="'+(W-padR)+'" y2="'+y+'" stroke="#C6BCA6" stroke-width="0.5" stroke-dasharray="2 3"/><text x="'+(padL-8)+'" y="'+(y+3)+'" text-anchor="end" font-size="10" fill="#5C6677" font-family="monospace">$'+v+'</text>';});
+    // x labels (every other)
+    let xlab='';pts.forEach((pt,i)=>{if(i%2===0||i===pts.length-1){xlab+='<text x="'+xOf(i)+'" y="'+(H-padB+18)+'" text-anchor="middle" font-size="9.5" fill="#5C6677" font-family="monospace">'+pt.m+'</text>';}});
+    // event dots
+    let dots='';events.forEach((e,k)=>{const x=xOf(e.i),y=yOf(pts[e.i].p);
+      dots+='<line x1="'+x+'" y1="'+y+'" x2="'+x+'" y2="'+(H-padB)+'" stroke="#C8642B" stroke-width="0.75" stroke-dasharray="3 3" opacity="0.5"/>'+
+      '<circle class="ev-dot" data-k="'+k+'" cx="'+x+'" cy="'+y+'" r="6" fill="#C8642B" stroke="#F2EEE4" stroke-width="2"/>'+
+      '<text x="'+x+'" y="'+(y-12)+'" text-anchor="middle" font-size="10" font-weight="700" fill="#13514E" font-family="monospace">'+(k+1)+'</text>';});
+    const svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TENB 12-month price chart with catalyst markers">'+
+      grid+
+      '<path d="'+area+'" fill="rgba(31,111,107,0.10)"/>'+
+      '<path d="'+path+'" fill="none" stroke="#13514E" stroke-width="2.5"/>'+
+      dots+
+      '<text x="'+padL+'" y="14" font-size="10.5" font-family="monospace" fill="#9B2D2D" font-weight="700">FEAR: "AI MAKES THEM OBSOLETE"</text>'+
+      '<text x="'+(W-padR)+'" y="14" text-anchor="end" font-size="10.5" font-family="monospace" fill="#2E6B4F" font-weight="700">REALITY: AI DRIVES DEMAND &rarr;</text>'+
+      '</svg>';
+    const wrap=document.getElementById('tenbChart');
+    if(!wrap)return;
+    wrap.innerHTML=svg+
+      '<div class="ev-card" id="evCard"></div>'+
+      '<div class="ev-hint">Tap a numbered marker for the catalyst</div>';
+    const card=document.getElementById('evCard');
+    function showEv(k){const e=events[k];card.innerHTML='<div class="ed">'+(k+1)+' · '+e.d+'</div><div class="et">'+e.t+'</div><div class="ex">'+e.x+'</div>';card.classList.add('show');}
+    wrap.querySelectorAll('.ev-dot').forEach(d=>{
+      d.addEventListener('click',()=>showEv(+d.dataset.k));
+    });
+    showEv(2); // default: Investor Day / Anthropic
+  })();
 </script>
 </body>
 </html>
